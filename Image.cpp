@@ -258,11 +258,62 @@ void MyImage::advancedFeature1() {
         }
     }
 }
-void MyImage::advancedFeature2() {
-    cout << "Advanced FEature 2" << endl;
+void MyImage::advancedFeature2()
+{
+    cout << "Rotate 90 Degrees (Clockwise)" << endl;
 
+    // make sure the data of the image is stored
+    int width = size.x;
+    int height = size.y;
+
+    // make a new vector using the data of the image
+    vector<RGB> rotatedPixels;
+    rotatedPixels.resize(width * height);
+
+    // for loop goes through every pixel in the image
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            int index = y * width + x;
+            // because it is being rotated, the x & y would be incorrect if they did not swap values
+            int rotatedX = height - 1 - y;
+            int rotatedY = x;
+
+            int rotatedIndex = rotatedY * height + rotatedX;
+
+            rotatedPixels[rotatedIndex] = pixels[index];
+        }
+    }
+    // assign the new rotated pixels to the old pixel data
+    pixels = rotatedPixels;
+
+    // swap the values so they are correct
+    size.x = height;
+    size.y = width;
 }
+
+
 void MyImage::advancedFeature3() {
     cout << "Advanced Feature 3" << endl;
 
+    int newX = size.x * 0.5;
+    int newY = size.y * 0.5;
+
+
+     size.x = newX;
+     size.y = newY;
+
+    for (float y = 0; y < size.y; ++y) {
+        for (float x = 0; x < size.x; ++x) {
+
+            int leftPixel = (y * size.x + x);
+
+            pixels[leftPixel] = pixels[newX + newY * size.x];
+
+        }
+    }
+
 }
+
+
