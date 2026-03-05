@@ -244,14 +244,17 @@ void MyImage::flipVertical() {
 
 }
 void MyImage::advancedFeature1() {
-    cout << "Advanced Feature 1" << endl;
+    cout << "Mirriors Right side to Left" << endl;
 
+    //nested loop to go throw the image matrix
     for (float y = 0; y < size.y; ++y) {
         for (float x = 0; x < size.x/2; ++x) {
 
+            //gets the pixels location on the left and right hand side of the image
             int leftPixel = y * size.x + x;
             int rightPixel = y * size.x + size.x - 1 -x;
 
+            //moves the pixel to the other side of the image.
             pixels[leftPixel] = pixels[rightPixel];
             pixels[rightPixel];
 
@@ -295,25 +298,35 @@ void MyImage::advancedFeature2()
 
 
 void MyImage::advancedFeature3() {
-    cout << "Advanced Feature 3" << endl;
+    cout << "Half Image" << endl;
 
-    int newX = size.x * 0.5;
-    int newY = size.y * 0.5;
+    //craetes holder that will change the size of the image
+    int newWidth = size.x * 0.7;
+    int newHeight = size.y * 0.7;
 
+    //nested for loops that goes throw the pixels of the images
+    for (int y = 0; y < size.y; ++y) {
+        for (int x = 0; x < size.x; ++x) {
 
-     size.x = newX;
-     size.y = newY;
-
-    for (float y = 0; y < size.y; ++y) {
-        for (float x = 0; x < size.x; ++x) {
-
-            int leftPixel = (y * size.x + x);
-
-            pixels[leftPixel] = pixels[newX + newY * size.x];
-
+            //changes the image size and rempves the bottom half of the image.
+            pixels.resize(newWidth * newHeight + x * newWidth);
         }
     }
-
 }
+
+void MyImage::advancedFeature4()
+{
+    cout << "Invert Colours" << endl;
+
+    // for loop goes through every pixel in the image
+    for (int i = 0; i < pixels.size(); i++)
+    {
+        // invert each colour by subtracting it from 255
+        pixels[i].r = 255 - pixels[i].r;
+        pixels[i].g = 255 - pixels[i].g;
+        pixels[i].b = 255 - pixels[i].b;
+    }
+}
+
 
 

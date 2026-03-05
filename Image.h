@@ -43,6 +43,8 @@ public:
     void advancedFeature1();
     void advancedFeature2();
     void advancedFeature3();
+    void advancedFeature4();
+
     void reload();
     void filterRed();
     void filterGreen();
